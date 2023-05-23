@@ -41,6 +41,7 @@ def prediction(file: UploadFile = File(...)):
     print(image.shape)
     cv2.imwrite('a.jpg', image)
     # load model
+    torch.hub._validate_not_a_forked_repo=lambda a,b,c: True
     model = torch.hub.load('ultralytics/yolov5', 'custom', path='Final_model/best_params/best.pt') 
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     results = model(image)
